@@ -1,6 +1,8 @@
 package com.example.root.flowanimation;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -21,9 +23,7 @@ import static com.github.florent37.expectanim.core.Expectations.scale;
 import static com.github.florent37.expectanim.core.Expectations.toRightOf;
 import static com.github.florent37.expectanim.core.Expectations.topOfParent;
 
-
 public class ScrollActivity extends AppCompatActivity {
-
     @BindView(R.id.username)
     View username;
     @BindView(R.id.avatar)
@@ -35,6 +35,13 @@ public class ScrollActivity extends AppCompatActivity {
 
     @BindView(R.id.scrollview)
     NestedScrollView scrollView;
+
+    @BindView(R.id.tlVp)
+    TabLayout tabLayout;
+
+    @BindView(R.id.vpScroll)
+    ViewPager viewPager;
+
 
     @BindDimen(R.dimen.height)
     int height;
@@ -65,10 +72,10 @@ public class ScrollActivity extends AppCompatActivity {
 
                 .expect(follow)
                 .toBe(
-                        rightOfParent().withMarginDp(20),
+                        toRightOf(username).withMarginDp(16),
+//                        rightOfParent().withMarginDp(20),
                         sameCenterVerticalAs(avatar)
                 )
-
                 .expect(backbground)
                 .toBe(
                         height(height).withGravity(Gravity.LEFT, Gravity.TOP)
